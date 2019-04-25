@@ -60,6 +60,7 @@ public class RentInfo extends AppCompatActivity implements View.OnClickListener 
         mileage.setText(car.getMileage());
         price.setText("Price/Km - 1.5 $/KM");
         deposit.setText("Deposit - 50$");
+        estimateLayout.setVisibility(View.GONE);
         Picasso.get().load(car.getImage()).into(car_image);
         //Set listener for start and end date
         startDate.setOnClickListener(new View.OnClickListener() {

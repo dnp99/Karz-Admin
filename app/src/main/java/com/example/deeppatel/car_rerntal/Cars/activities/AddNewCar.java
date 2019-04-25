@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,10 +13,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.example.deeppatel.car_rerntal.Cars.database.AddCar;
 import com.example.deeppatel.car_rerntal.Cars.models.Car;
 import com.example.deeppatel.car_rerntal.Home;
@@ -28,6 +32,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 
+import static com.basgeekball.awesomevalidation.ValidationStyle.BASIC;
+
 public class AddNewCar extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -37,7 +43,10 @@ public class AddNewCar extends AppCompatActivity {
     FirebaseStorage storage;
     StorageReference storageReference;
     String imgURL;
-
+    TextView img_status;
+    Button btn_cont;
+    //Initialize awesome validation
+    final AwesomeValidation mAwesomeValidation = new AwesomeValidation(BASIC);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +59,15 @@ public class AddNewCar extends AppCompatActivity {
         actionBar.setTitle("All Cars");
         actionBar.setSubtitle("Add New Car");
 
+        name = findViewById(R.id.car_name);
+        model = findViewById(R.id.model_name);
+        mileage = findViewById(R.id.car_mileagel_name);
+        img_status=findViewById(R.id.car_image_status);
+        btn_cont=findViewById(R.id.btn_continue_addNewCar);
+        btn_cont.setVisibility(View.GONE);
+        mAwesomeValidation.addValidation( name, "^(?=\\s*\\S).*$", "Required");
+        mAwesomeValidation.addValidation( model, "^(?=\\s*\\S).*$", "Required");
+        mAwesomeValidation.addValidation( mileage, "^(?=\\s*\\S).*$", "Required");
 
     }
 
@@ -57,34 +75,32 @@ public class AddNewCar extends AppCompatActivity {
         switch (v.getId()) {
 
             case R.id.car_gallery_image:
-                    uploadImage();;
+                    uploadImage();
 
                 break;
 
 
 
             case R.id.btn_continue_addNewCar:
-                name = findViewById(R.id.car_name);
-                model = findViewById(R.id.model_name);
-                mileage = findViewById(R.id.car_mileagel_name);
+                if(mAwesomeValidation.validate())
+                {
+                    Car car = new Car();
+                    car.setName(name.getText().toString());
+                    car.setModel(model.getText().toString());
+                    car.setMileage((mileage.getText().toString()));
+                    car.setImage(imgURL);
+                    car.setStatus("true");
 
-                Car car = new Car();
-                car.setName(name.getText().toString());
-                car.setModel(model.getText().toString());
-                car.setMileage((mileage.getText().toString()));
-                car.setImage(imgURL);
-                car.setStatus("true");
+                    AddCar addToDB = new AddCar();
+                    addToDB.addToDatabase(car);
+                    Toast.makeText(this, car.getName() + " has been added", Toast.LENGTH_SHORT).show();
 
-                AddCar addToDB = new AddCar();
-                addToDB.addToDatabase(car);
-                Toast.makeText(this, car.getName() + " has been added", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getBaseContext(), Home.class);
+                    startActivity(i);
+                    break;
+                }
 
-                Intent i = new Intent(getBaseContext(), Home.class);
-                startActivity(i);
-                break;
 
-            case R.id.btn_cancel_addNewCar:
-                Toast.makeText(getBaseContext(), "DB: Cancel ", Toast.LENGTH_SHORT).show();
 
 //                /*******     Back to All  Car Fragment  ********/
 //                Intent serachForCustomer = new Intent(this, SearchForCustomer.class);
@@ -155,7 +171,10 @@ public class AddNewCar extends AppCompatActivity {
                                 return imagesRef.getDownloadUrl();
                             }).addOnCompleteListener(task -> {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(getBaseContext(), "image uploaded", Toast.LENGTH_SHORT).show();
+                                    img_status.setText("Image Uploaded !!");
+                                    img_status.setTextColor(Color.parseColor("#006400"));
+                                    btn_cont.setVisibility(View.VISIBLE);
+                                    Toast.makeText(getBaseContext(), "image uploaded", Toast.LENGTH_LONG).show();
                                     Log.d("taskResult", String.valueOf(task.getResult()));
                                     imgURL=String.valueOf(task.getResult());
                                 }

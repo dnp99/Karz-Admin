@@ -37,7 +37,7 @@
 
                 <EditText
                     android:id="@+id/EDIT_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/EDIT_name_label"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -63,7 +63,7 @@
 
                 <EditText
                     android:id="@+id/EDIT_model"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/EDIT_model_label"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -89,7 +89,7 @@
 
                 <EditText
                     android:id="@+id/EDIT_mileage"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/EDIT_miles_label"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"

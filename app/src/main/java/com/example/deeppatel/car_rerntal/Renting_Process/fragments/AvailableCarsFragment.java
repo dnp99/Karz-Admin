@@ -84,7 +84,7 @@ public class AvailableCarsFragment extends Fragment {
             RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                Toast.makeText(context, "empty", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "empty", Toast.LENGTH_SHORT).show();
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }

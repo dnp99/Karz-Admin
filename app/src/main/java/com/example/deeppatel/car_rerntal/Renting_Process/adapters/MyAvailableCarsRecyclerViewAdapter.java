@@ -111,20 +111,14 @@ public class MyAvailableCarsRecyclerViewAdapter extends RecyclerView.Adapter<MyA
                 }
 
             }
-
             FilterResults results = new FilterResults();
-
             results.values = carListNew;
-
             return results;
-
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-
             Data_Available_car.setAvailable_carList((List) results.values);
-
             notifyDataSetChanged();
         }
     };

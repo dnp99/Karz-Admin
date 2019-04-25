@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Cars.activities.AddNewCar">
+    tools:context=".Cars.activities.AddNewCar"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,67 +27,96 @@
                     android:id="@+id/car_info_label"
                     style="@style/Label_header"
                     android:text="Add Car's detail"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent" />
 
-                <TextView
-                    android:id="@+id/car_name_label"
-
-                    style="@style/book_car_tv_style"
-                    android:text="Name : "
-                    app:layout_constraintTop_toBottomOf="@id/car_info_label" />
 
                 <EditText
+                    app:layout_constraintTop_toBottomOf="@id/car_info_label"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     android:id="@+id/car_name"
-                    style="@style/book_car_tv_style"
+                    android:background="@drawable/rounded_rectangle"
+                    android:layout_marginTop="20dp"
+                    android:minHeight="40dp"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="20sp"
+                    android:hint="Audi"
+                    android:layout_height="40dp"
+                    android:layout_width="320dp"/>
 
-                    android:hint="car_name"
-                    app:layout_constraintLeft_toRightOf="@id/car_name_label"
-                    app:layout_constraintTop_toBottomOf="@id/car_info_label" />
-
-                <TextView
-                    android:id="@+id/car_model_label"
-                    style="@style/book_car_tv_style"
-                    android:text="Model : "
-                    app:layout_constraintTop_toBottomOf="@id/car_name_label" />
 
                 <EditText
                     android:id="@+id/model_name"
-                    style="@style/book_car_tv_style"
-                    android:hint="A6"
-                    app:layout_constraintLeft_toRightOf="@id/car_model_label"
-                    app:layout_constraintTop_toBottomOf="@id/car_name_label" />
+                    android:hint="A4"
+                    app:layout_constraintTop_toBottomOf="@id/car_name"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:minHeight="40dp"
+                    android:textSize="20sp"
+                    android:layout_height="40dp"
+                    android:layout_width="320dp"
+
+                    android:background="@drawable/rounded_rectangle"/>
 
 
-                <TextView
-                    android:id="@+id/car_mileage_label"
-                    style="@style/book_car_tv_style"
-                    android:text="Mileage(km) : "
-                    app:layout_constraintTop_toBottomOf="@id/car_model_label" />
 
                 <EditText
                     android:id="@+id/car_mileagel_name"
-                    style="@style/book_car_tv_style"
-                    android:hint="15000K"
-                    app:layout_constraintLeft_toRightOf="@id/car_mileage_label"
-                    app:layout_constraintTop_toBottomOf="@id/car_model_label" />
+                    android:hint="1500km"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:minHeight="40dp"
+                    android:textSize="20sp"
+                    android:layout_height="40dp"
+                    android:layout_width="320dp"
+                    android:background="@drawable/rounded_rectangle"
+                    app:layout_constraintTop_toBottomOf="@id/model_name"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
 
 
 
 
-
-                <Button
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
                     android:id="@+id/car_gallery_image"
-                    style="@style/book_car_tv_style"
-                    android:text="Gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="10dp"
+                    fancy:fb_borderColor="#FFFFFF"
+                    fancy:fb_borderWidth="1dp"
+                    fancy:fb_defaultColor="#7ab800"
+                    fancy:fb_focusColor="#9bd823"
+                    fancy:fb_fontIconResource="&#xf04b;"
+                    fancy:fb_iconPosition="left"
+                    fancy:fb_radius="30dp"
+                    fancy:fb_text="Gallery"
+                    fancy:fb_textColor="#FFFFFF"
+
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/car_mileagel_name"
                     android:onClick="onClick"/>
+
+                <TextView
+                    android:id="@+id/car_image_status"
+                    android:layout_marginTop="20sp"
+                    android:layout_marginLeft="5sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@+id/car_gallery_image"
+                    app:layout_constraintTop_toBottomOf="@+id/car_mileagel_name"
+                    android:hint="Select image from gallery!!"/>
 
                 <android.support.v7.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/img_new_car"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/car_gallery_image"/>
 
                 <LinearLayout
@@ -97,17 +129,12 @@
             app:layout_constraintTop_toBottomOf="@id/img_new_car">
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_continue_addNewCar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Continue"
                 android:onClick="onClick"
-                android:layout_weight="1"/>
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_cancel_addNewCar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cancel"
-                android:onClick="onClick"
+                android:textColor="@android:color/white"
+                android:background="@color/colorAccent"
                 android:layout_weight="1"/>
 
 
