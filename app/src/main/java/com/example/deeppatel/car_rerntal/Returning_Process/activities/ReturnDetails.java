@@ -25,6 +25,8 @@ import com.example.deeppatel.car_rerntal.Customer.models.Customer;
 import com.example.deeppatel.car_rerntal.Home;
 import com.example.deeppatel.car_rerntal.R;
 import com.example.deeppatel.car_rerntal.Renting_Process.models.BusinessRule;
+import com.example.deeppatel.car_rerntal.Returning_Process.database.AddToHistory;
+import com.example.deeppatel.car_rerntal.Returning_Process.database.DeleteReservation;
 import com.example.deeppatel.car_rerntal.Returning_Process.database.UpdateCar;
 import com.example.deeppatel.car_rerntal.Returning_Process.database.UpdateReservation;
 import com.example.deeppatel.car_rerntal.Returning_Process.models.Reservation;
@@ -42,6 +44,7 @@ import static com.basgeekball.awesomevalidation.ValidationStyle.BASIC;
 
 public class ReturnDetails extends AppCompatActivity {
 
+    private double balance;
     private View circle_ele;
     private ImageView car_image_iv;
     private TextView car_name, car_model, booked_on, booked_by, return_date, deposit_paid, initial_mileage;
@@ -193,7 +196,7 @@ public class ReturnDetails extends AppCompatActivity {
 
                     Log.i("kms", String.valueOf(kms));
 
-                    double balance = (kms * BusinessRule.price_per_km) - BusinessRule.deposit;
+                    balance = (kms * BusinessRule.price_per_km) - BusinessRule.deposit;
 
                     balance = Math.round(balance);
 
@@ -219,6 +222,10 @@ public class ReturnDetails extends AppCompatActivity {
                                         new UpdateReservation().updateReservation(r.getId(), currentMileage.getText().toString());
                                         //Change the car status and the mileage
                                         new UpdateCar().updateCar(car.getID(), currentMileage.getText().toString());
+                                        //Save to history
+                                        new AddToHistory().addToHistory(r, currentMileage.getText().toString(), String.valueOf(balance));
+                                        //Delete the reservation
+                                        new DeleteReservation().deleteReservation(r.getId());
 
                                         Toasty.success(getApplicationContext(), "Payment Successful! Receipt Emailed.").show();
 
