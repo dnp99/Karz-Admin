@@ -30,6 +30,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import es.dmoral.toasty.Toasty;
+
 public class CarFragment extends Fragment implements CarAdapter.OnAllCarItemClickedListener {
 
     RecyclerView allCarsList;
@@ -90,9 +92,10 @@ public class CarFragment extends Fragment implements CarAdapter.OnAllCarItemClic
                             @Override
                             public void onClick(View v) {
                                 //Make sure the user wants to delete the customer after all
-                                Toast.makeText(getContext(),
-                                        carsEngine.getCar(viewHolder.getAdapterPosition()).getName()+ " is deleted" ,
-                                        Toast.LENGTH_SHORT).show();
+                                Toasty.success(getContext(), carsEngine.getCar(viewHolder.getAdapterPosition()).getName()+ " is deleted").show();
+//                                Toast.makeText(getContext(),
+//                                        carsEngine.getCar(viewHolder.getAdapterPosition()).getName()+ " is deleted" ,
+//                                        Toast.LENGTH_SHORT).show();
                                 carsEngine.deleteCar(viewHolder.getAdapterPosition());
                                 carsAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
                                 carsAdapter.notifyItemRangeChanged(viewHolder.getAdapterPosition(), carsAdapter.getItemCount());

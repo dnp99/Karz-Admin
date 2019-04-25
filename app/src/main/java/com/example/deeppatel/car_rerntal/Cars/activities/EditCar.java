@@ -16,6 +16,8 @@ import com.example.deeppatel.car_rerntal.Home;
 import com.example.deeppatel.car_rerntal.R;
 import com.squareup.picasso.Picasso;
 
+import es.dmoral.toasty.Toasty;
+
 public class EditCar extends AppCompatActivity {
 
     private EditText name,model ,mileage,status;
@@ -42,7 +44,7 @@ public class EditCar extends AppCompatActivity {
             mileage.setText(String.valueOf(editCar.getMileage()));
             status.setText(String.valueOf(editCar.getStatus()));
             status.setEnabled(false);
-            Picasso.get().load(editCar.getImage()).into(imageView);
+            Picasso.get().load(editCar.getImage()).placeholder(R.drawable.ic_launcher_foreground).into(imageView);
         }
 
     }
@@ -69,6 +71,8 @@ public class EditCar extends AppCompatActivity {
             updatedCar.setStatus((status.getText().toString()));
             UpdateCar newCar = new UpdateCar();
             newCar.updateData(updatedCar);
+
+            Toasty.success(getApplicationContext(), "Updated Successfully").show();
 
             Intent toHome = new Intent(getApplicationContext(), Home.class);
             startActivity(toHome);

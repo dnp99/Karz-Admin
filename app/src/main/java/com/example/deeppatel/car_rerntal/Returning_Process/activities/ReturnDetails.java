@@ -94,7 +94,7 @@ public class ReturnDetails extends AppCompatActivity {
             initial_mileage.setText(car.getMileage());
 
             Picasso.get().setLoggingEnabled(true);
-            Picasso.get().load(car.getImage()).resize(180, 180).centerCrop().into(car_image_iv);
+            Picasso.get().load(car.getImage()).placeholder(R.drawable.ic_launcher_foreground).resize(180, 180).centerCrop().into(car_image_iv);
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -253,6 +253,11 @@ public class ReturnDetails extends AppCompatActivity {
                                         //Change the car status and the mileage
                                         new UpdateCar().updateCar(car.getID(), currentMileage.getText().toString());
 
+                                        //Save to history
+                                        new AddToHistory().addToHistory(r, currentMileage.getText().toString(), String.valueOf(balance));
+                                        //Delete the reservation
+                                        new DeleteReservation().deleteReservation(r.getId());
+
                                         Toasty.success(getApplicationContext(), "Payment Successful! Receipt Emailed.").show();
 
                                         toHomeAfterSuccess = new Intent(getApplicationContext(), Home.class);
@@ -278,6 +283,11 @@ public class ReturnDetails extends AppCompatActivity {
                                         new UpdateReservation().updateReservation(r.getId(), currentMileage.getText().toString());
                                         //Change the car status and the mileage
                                         new UpdateCar().updateCar(car.getID(), currentMileage.getText().toString());
+
+                                        //Save to history
+                                        new AddToHistory().addToHistory(r, currentMileage.getText().toString(), String.valueOf(balance));
+                                        //Delete the reservation
+                                        new DeleteReservation().deleteReservation(r.getId());
 
                                         Toasty.success(getApplicationContext(), "Payment Successful! Receipt Emailed.").show();
 
