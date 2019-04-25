@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_rent"
+        android:title="@string/string_rent"
+        android:icon="@drawable/ic_expand_less_black_24dp"
+        >
+    </item>
+
+    <item
+        android:id="@+id/navigation_customer"
+        android:icon="@drawable/ic_perm_identity_black_24dp"
+        android:title="@string/title_customer" />
+
+    <item
+        android:id="@+id/navigation_car"
+        android:icon="@drawable/ic_directions_car_black_24dp"
+        android:title="@string/title_car" />
+
+    <item
+        android:id="@+id/navigation_return_car"
+        android:title="@string/return_car"
+        android:icon="@drawable/ic_expand_more_black_24dp"
+
+        />
+
+
+</menu>

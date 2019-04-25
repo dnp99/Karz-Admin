@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Cars.activities.AddNewCar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/car_info_label"
+                    style="@style/Label_header"
+                    android:text="Add Car's detail"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <TextView
+                    android:id="@+id/car_name_label"
+
+                    style="@style/book_car_tv_style"
+                    android:text="Name : "
+                    app:layout_constraintTop_toBottomOf="@id/car_info_label" />
+
+                <EditText
+                    android:id="@+id/car_name"
+                    style="@style/book_car_tv_style"
+
+                    android:hint="car_name"
+                    app:layout_constraintLeft_toRightOf="@id/car_name_label"
+                    app:layout_constraintTop_toBottomOf="@id/car_info_label" />
+
+                <TextView
+                    android:id="@+id/car_model_label"
+                    style="@style/book_car_tv_style"
+                    android:text="Model : "
+                    app:layout_constraintTop_toBottomOf="@id/car_name_label" />
+
+                <EditText
+                    android:id="@+id/model_name"
+                    style="@style/book_car_tv_style"
+                    android:hint="A6"
+                    app:layout_constraintLeft_toRightOf="@id/car_model_label"
+                    app:layout_constraintTop_toBottomOf="@id/car_name_label" />
+
+
+                <TextView
+                    android:id="@+id/car_mileage_label"
+                    style="@style/book_car_tv_style"
+                    android:text="Mileage(km) : "
+                    app:layout_constraintTop_toBottomOf="@id/car_model_label" />
+
+                <EditText
+                    android:id="@+id/car_mileagel_name"
+                    style="@style/book_car_tv_style"
+                    android:hint="15000K"
+                    app:layout_constraintLeft_toRightOf="@id/car_mileage_label"
+                    app:layout_constraintTop_toBottomOf="@id/car_model_label" />
+
+
+
+
+
+                <Button
+                    android:id="@+id/car_gallery_image"
+                    style="@style/book_car_tv_style"
+                    android:text="Gallery"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/car_mileagel_name"
+                    android:onClick="onClick"/>
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/img_new_car"
+                    app:layout_constraintTop_toBottomOf="@+id/car_gallery_image"/>
+
+                <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:weightSum="2"
+            app:layout_constraintTop_toBottomOf="@id/img_new_car">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_continue_addNewCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Continue"
+                android:onClick="onClick"
+                android:layout_weight="1"/>
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_cancel_addNewCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:onClick="onClick"
+                android:layout_weight="1"/>
+
+
+        </LinearLayout>
+
+
+            </android.support.constraint.ConstraintLayout>
+
+        </ScrollView>
+
+
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Karz-Admin</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="string_navigaton_car">Car</string>
+    <string name="string_navigaton_rent">Rent</string>
+    <string name="string_navigaton_return_car">Return Car</string>
+    <string name="title_car"> All Cars</string>
+    <string name="string_rent">Rent a Car</string>
+    <string name="return_car">Return a  Car</string>
+    <string name="title_customer">All Customers</string>
+    <string name="available_from">Available From</string>
+    <string name="payment">Payment</string>
+    <string name="make_payment">Make Payment</string>
+    <string name="transition_name_circle_ele">transition:CIRCLE</string>
+    <string name="transition_name_car_name">transition:NAME</string>
+    <string name="return_automobile">Return this car</string>
+    <string name="title_activity_payment">Payment</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="debit">DEBIT</string>
+    <string name="credit">CREDIT</string>
+    <string name="cash">CASH</string>
+    <string name="Search">Search</string>
+    <string name="Receipt_label">Receipt</string>
+    <string name="history_lable">History</string>
+    <string name="payment_success">Payment Received! Receipt Mailed.</string>
+    <string name="back">Back</string>
+    <string name="confirm_cust_del">Confirm deletion</string>
+    <string name="delete_confirm_snackbar">DELETE</string>
+    <string name="customer_register">Register</string>
+    <string name="license_number">License Number</string>
+    <string name="name">Name</string>
+    <string name="province">Province</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="house_apt_and_street_name">House / Apt and Street Name</string>
+    <string name="license_class">License Class</string>
+    <string name="save">Save</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="edit_customer">Edit Customer</string>
+    <string name="current_mileage">Current Mileage</string>
+    <string name="payment_processed">Payment Processed</string>
+    <string name="receipt">RECEIPT</string>
+
+    <string name="application_name">Karz-Admin</string>
+
+</resources>

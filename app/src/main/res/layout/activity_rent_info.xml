@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <RelativeLayout tools:context=".Renting_Process.activities.RentInfo" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    -<ScrollView android:layout_height="wrap_content" android:layout_width="match_parent">
+
+
+    -<android.support.constraint.ConstraintLayout android:layout_height="wrap_content" android:layout_width="match_parent">
+
+    <ImageView android:layout_height="160dp" android:layout_width="match_parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintBottom_toTopOf="@+id/car_info_label" app:layout_constraintTop_toTopOf="parent" android:layout_gravity="center_horizontal" android:scaleType="centerCrop" app:srcCompat="@mipmap/ic_launcher_round" android:id="@+id/rent_car_image1"/>
+
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" app:layout_constraintRight_toRightOf="parent" android:id="@+id/rent_car_name" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toBottomOf="@id/rent_car_image1" android:background="@drawable/rounded_rectangle" android:layout_marginTop="20dp" android:minHeight="40dp" android:textSize="20sp" android:text="Car Name"/>
+
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" app:layout_constraintRight_toRightOf="parent" android:id="@+id/rent_car_model" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toBottomOf="@id/rent_car_name" android:background="@drawable/rounded_rectangle" android:layout_marginTop="10dp" android:minHeight="10dp" android:textSize="20sp" android:text="Model"/>
+
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" app:layout_constraintRight_toRightOf="parent" android:id="@+id/rent_car_mileage" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toBottomOf="@id/rent_car_model" android:background="@drawable/rounded_rectangle" android:layout_marginTop="10dp" android:minHeight="40dp" android:textSize="20sp" android:text="Mileage(km) : "/>
+
+    <View android:layout_height="2dp" android:layout_width="match_parent" android:id="@+id/view" app:layout_constraintTop_toBottomOf="@id/rent_car_mileage" android:background="@android:color/black" android:layout_marginTop="15dp"/>
+
+    <TextView app:layout_constraintRight_toRightOf="parent" android:id="@+id/rent_info_label" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toBottomOf="@id/view" android:text="Rent Information" android:layout_margin="@dimen/text_margin" style="@style/Label_header"/>
+
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" app:layout_constraintRight_toRightOf="parent" android:id="@+id/rent_price_per_km" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toBottomOf="@id/rent_info_label" android:background="@drawable/rounded_rectangle" android:layout_marginTop="10dp" android:minHeight="40dp" android:textSize="20sp" android:text="Pricing(/km) : "/>
+
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" app:layout_constraintRight_toRightOf="parent" android:id="@+id/rent_fixed_deposit" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toBottomOf="@id/rent_price_per_km" android:background="@drawable/rounded_rectangle" android:layout_marginTop="10dp" android:minHeight="40dp" android:textSize="20sp" android:text="50"/>
+
+
+    -<LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" app:layout_constraintRight_toRightOf="parent" android:id="@+id/rent_ll_renting_period" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toBottomOf="@+id/rent_fixed_deposit">
+
+    <!--<TextView android:id="@+id/renting_period" android:textSize="15sp" android:text="Renting Period : "-->
+        <!--android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginLeft="15sp"/>-->
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/start_date_time"
+        android:hint="Start Date"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+
+        android:layout_marginStart="16dp"/>
+
+    <TextView android:id="@+id/to_label"
+        android:text="to "
+        style="@style/book_car_tv_style"
+        />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/end_date_time"
+        android:hint="End Date"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"/>
+
+</LinearLayout>
+
+
+    -<LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" app:layout_constraintRight_toRightOf="parent" android:id="@+id/rent_ll_overview_info" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toBottomOf="@id/rent_ll_renting_period" app:layout_constraintBottom_toBottomOf="parent" android:orientation="vertical">
+
+
+    -<LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal">
+
+    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:textSize="15sp" android:text="Hour Estimation: "/>
+
+    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/date_estimate" android:textSize="15sp" android:hint="start and end date "/>
+
+    <!--<TextView-->
+
+
+    <!--android:id="@+id/hour_estimate"-->
+
+
+    <!--android:layout_width="wrap_content"-->
+
+
+    <!--android:layout_height="wrap_content"-->
+
+
+    <!--android:textSize="15sp"-->
+
+
+    <!--android:hint="hour estimate" />-->
+
+
+</LinearLayout>
+
+
+    -<LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_marginTop="8dp" android:orientation="horizontal">
+
+    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:textSize="15sp" android:text="Billing overview : "/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/price_estimate"
+        android:textSize="15sp"
+        android:hint="estimated price "/>
+
+</LinearLayout>
+
+
+    -<LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_marginTop="20dp" android:orientation="horizontal" android:weightSum="2" android:layout_weight="1">
+
+    <android.support.v7.widget.AppCompatButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/btn_continue_rentinfo" android:text="Continue" android:layout_weight="1" android:onClick="onClick"/>
+
+    <android.support.v7.widget.AppCompatButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/btn_cancel_rentinfo" android:text="Cancel" android:layout_weight="1" android:onClick="onClick"/>
+
+</LinearLayout>
+
+</LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
+
+</ScrollView>
+
+</RelativeLayout>

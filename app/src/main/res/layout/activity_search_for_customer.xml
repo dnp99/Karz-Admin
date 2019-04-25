@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Renting_Process.activities.SearchForCustomer"
+    android:orientation="vertical"
+    android:weightSum="2.5"
+    android:layout_marginBottom="10dp">
+
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:text="Select Customer"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="25sp" />
+
+
+    <EditText
+        android:id="@+id/et_search_for_customer"
+        android:hint="Enter First Name"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:inputType="text"
+        android:layout_weight="0.2"/>
+
+    <Button
+        android:id="@+id/imageSearchButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:onClick="searchCustomer"
+        android:text="@string/Search"
+        android:textColor="@color/colorAccent"
+
+        android:layout_weight="0.2"
+        />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.4"
+        android:id="@+id/searched_customer_fragment">
+
+    </FrameLayout>
+
+</LinearLayout>

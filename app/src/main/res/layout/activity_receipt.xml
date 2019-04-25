@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Renting_Process.activities.Receipt">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/receipt_info_label"
+                style="@style/Label_header"
+                android:text="Receipt"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textAllCaps="true"
+                android:layout_marginBottom="20dp"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:id="@+id/customer_name_label"
+                style="@style/book_car_tv_style"
+                android:text="Customer  "
+                app:layout_constraintTop_toBottomOf="@id/receipt_info_label" />
+
+            <TextView
+                android:id="@+id/receipt_customer_name"
+                style="@style/book_car_tv_style"
+                android:text="customer_name"
+                app:layout_constraintLeft_toRightOf="@id/customer_name_label"
+                app:layout_constraintTop_toBottomOf="@id/receipt_info_label" />
+
+            <TextView
+                android:id="@+id/car_name_label"
+                style="@style/book_car_tv_style"
+                android:text="Car : "
+                app:layout_constraintTop_toBottomOf="@id/customer_name_label" />
+
+            <TextView
+                android:id="@+id/receipt_car_name"
+                style="@style/book_car_tv_style"
+                android:text="car_name"
+                app:layout_constraintLeft_toRightOf="@id/car_name_label"
+                app:layout_constraintTop_toBottomOf="@id/customer_name_label" />
+
+            <TextView
+                android:id="@+id/car_model_label"
+                style="@style/book_car_tv_style"
+                android:text="Model : "
+                app:layout_constraintTop_toBottomOf="@id/car_name_label" />
+
+            <TextView
+                android:id="@+id/receipt_model_name"
+                style="@style/book_car_tv_style"
+                android:text="A6"
+                app:layout_constraintLeft_toRightOf="@id/car_model_label"
+                app:layout_constraintTop_toBottomOf="@id/car_name_label" />
+
+
+
+            <TextView
+                android:id="@+id/start_period_label"
+                style="@style/book_car_tv_style"
+                android:text="Rent Date: "
+                app:layout_constraintTop_toBottomOf="@id/car_model_label" />
+
+            <TextView
+                android:id="@+id/receipt_start_period"
+                style="@style/book_car_tv_style"
+                android:text="start  date"
+                app:layout_constraintLeft_toRightOf="@id/start_period_label"
+                app:layout_constraintTop_toBottomOf="@id/receipt_model_name" />
+
+            <TextView
+                android:id="@+id/end_period_label"
+                style="@style/book_car_tv_style"
+                android:text="Return Date: "
+                app:layout_constraintTop_toBottomOf="@id/start_period_label" />
+
+            <TextView
+                android:id="@+id/receipt_end_period"
+                style="@style/book_car_tv_style"
+                android:text="return  date"
+                app:layout_constraintLeft_toRightOf="@id/end_period_label"
+                app:layout_constraintTop_toBottomOf="@id/receipt_start_period" />
+
+            <TextView
+                android:id="@+id/estimated_usage_label"
+                android:text="Estimated Usage Charge:"
+                style="@style/book_car_tv_style"
+                app:layout_constraintTop_toBottomOf="@id/end_period_label"
+                />
+            <TextView
+                android:id="@+id/receipt_estimated_usage"
+                style="@style/book_car_tv_style"
+                android:text="20$"
+                app:layout_constraintLeft_toRightOf="@id/estimated_usage_label"
+                app:layout_constraintTop_toBottomOf="@id/receipt_end_period" />
+
+            <TextView
+                android:id="@+id/deposit_label"
+                android:text="Deposit : "
+                style="@style/book_car_tv_style"
+                app:layout_constraintTop_toBottomOf="@id/estimated_usage_label"
+                />
+            <TextView
+                android:id="@+id/receipt_deposit"
+                style="@style/book_car_tv_style"
+                android:text="30$"
+                app:layout_constraintLeft_toRightOf="@id/deposit_label"
+                app:layout_constraintTop_toBottomOf="@id/receipt_estimated_usage" />
+
+            <!--<TextView-->
+                <!--android:id="@+id/booking_id_label"-->
+                <!--android:text="Booking ID : "-->
+                <!--style="@style/book_car_tv_style"-->
+                <!--app:layout_constraintTop_toBottomOf="@id/deposit_label"-->
+                <!--/>-->
+            <TextView
+                android:id="@+id/receipt_booking_id"
+                style="@style/book_car_tv_style"
+                android:text=""
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/receipt_deposit" />
+
+            <Button
+                style="@style/book_car_tv_style"
+                app:layout_constraintTop_toBottomOf="@id/receipt_booking_id"
+                android:layout_width="match_parent"
+                android:outlineAmbientShadowColor="@color/colorPrimary"
+                android:text="OK"
+                android:onClick="ok_receipt"/>
+
+
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+        </android.support.constraint.ConstraintLayout>
