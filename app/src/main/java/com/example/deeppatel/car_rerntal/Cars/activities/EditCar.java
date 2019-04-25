@@ -57,7 +57,8 @@ public class EditCar extends AppCompatActivity {
             }
             status.setText(status1);
             status.setEnabled(false);
-            Picasso.get().load(editCar.getImage()).into(imageView);
+            Picasso.get().load(editCar.getImage()).placeholder(R.drawable.default_placeholder).into(imageView);
+
         }
 
         mAwesomeValidation.addValidation( name, "^(?=\\s*\\S).*$", "Required");
