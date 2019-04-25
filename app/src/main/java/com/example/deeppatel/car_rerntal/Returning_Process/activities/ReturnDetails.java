@@ -30,6 +30,8 @@ import com.example.deeppatel.car_rerntal.Returning_Process.database.UpdateReserv
 import com.example.deeppatel.car_rerntal.Returning_Process.models.Reservation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
@@ -118,31 +120,28 @@ public class ReturnDetails extends AppCompatActivity {
 
                                 Log.i("RES", r.toString());
 
-                                db.collection("user")
-                                        .whereEqualTo("userId", r.getUserId())
-                                        .get()
-                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                DocumentReference df = db.collection("user").document(r.getUserId());
+
+                                df.get()
+                                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                             @Override
-                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
                                                 if(task.isSuccessful()){
 
-                                                    QuerySnapshot documentSnapshot1 = task.getResult();
+                                                    DocumentSnapshot doc = task.getResult();
 
-                                                    if(!documentSnapshot1.isEmpty()){
+                                                    if(doc.exists()){
 
-                                                        c.setFirstName(documentSnapshot1.getDocuments().get(0).get("firstName").toString());
-                                                        c.setLastName(documentSnapshot1.getDocuments().get(0).get("lastName").toString());
-                                                        c.setLicenseId(documentSnapshot1.getDocuments().get(0).get("licenseId").toString());
-                                                        c.setUserId(documentSnapshot1.getDocuments().get(0).get("userId").toString());
-
-                                                        Log.i("CUSTOMER", c.toString());
+                                                        c.setFirstName(doc.get("firstName").toString());
+                                                        c.setLastName(doc.get("lastName").toString());
+                                                        c.setLicenseId(doc.get("licenseId").toString());
+                                                        c.setUserId(doc.get("userId").toString());
 
                                                         booked_on.setText(r.getStartDateTime().toUpperCase());
                                                         booked_by.setText(c.getFirstName().toUpperCase() + " " + c.getLastName().toUpperCase());
                                                         return_date.setText(r.getEndDateTime().toUpperCase());
                                                         deposit_paid.setText(String.valueOf(r.getDeposit()));
-
 
                                                     }
 
