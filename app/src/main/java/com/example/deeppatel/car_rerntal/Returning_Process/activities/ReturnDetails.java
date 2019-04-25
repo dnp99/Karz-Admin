@@ -181,127 +181,135 @@ public class ReturnDetails extends AppCompatActivity {
 
             if(mAwesomeValidation.validate()){
 
-                final AlertDialog dialogBuilder = new AlertDialog.Builder(this).create();
-                LayoutInflater inflater = this.getLayoutInflater();
-                View dialogView = inflater.inflate(R.layout.payment_dialog, null);
+                if(Double.parseDouble(currentMileage.getText().toString()) < Double.parseDouble(car.getMileage())){
 
-                Button debit = dialogView.findViewById(R.id.btn_debit);
-                Button credit = dialogView.findViewById(R.id.btn_credit);
-                Button cash = dialogView.findViewById(R.id.btn_cash);
-                TextView amount_tv = dialogView.findViewById(R.id.balance_tv);
+                    Toasty.warning(getApplicationContext(), "Current mileage is less than the previous mileage").show();
 
-                if(car != null && r != null && c != null){
+                }else{
 
-                    double kms = (Double.parseDouble(currentMileage.getText().toString()) - Double.parseDouble(car.getMileage())) / 0.62137;
+                    final AlertDialog dialogBuilder = new AlertDialog.Builder(this).create();
+                    LayoutInflater inflater = this.getLayoutInflater();
+                    View dialogView = inflater.inflate(R.layout.payment_dialog, null);
 
-                    Log.i("kms", String.valueOf(kms));
+                    Button debit = dialogView.findViewById(R.id.btn_debit);
+                    Button credit = dialogView.findViewById(R.id.btn_credit);
+                    Button cash = dialogView.findViewById(R.id.btn_cash);
+                    TextView amount_tv = dialogView.findViewById(R.id.balance_tv);
 
-                    balance = (kms * BusinessRule.price_per_km) - BusinessRule.deposit;
+                    if(car != null && r != null && c != null){
 
-                    balance = Math.round(balance);
+                        double kms = (Double.parseDouble(currentMileage.getText().toString()) - Double.parseDouble(car.getMileage())) / 0.62137;
 
-                    Log.i("Balance", String.valueOf(balance));
+                        Log.i("kms", String.valueOf(kms));
 
-                    amount_tv.setText("$ " + balance);
+                        balance = (kms * BusinessRule.price_per_km) - BusinessRule.deposit;
 
-                }else {
-                    Toasty.error(getApplicationContext(), "Something went wrong");
+                        balance = Math.round(balance);
+
+                        Log.i("Balance", String.valueOf(balance));
+
+                        amount_tv.setText("$ " + balance);
+
+                    }else {
+                        Toasty.error(getApplicationContext(), "Something went wrong");
+                    }
+
+                    debit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            dialogBuilder.dismiss();
+                            Snackbar.make(parentActivityLayout, R.string.payment_processed , Snackbar.LENGTH_INDEFINITE)
+                                    .setAction(R.string.back, new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+                                            //Update the current mileageReturned for the reservation
+                                            new UpdateReservation().updateReservation(r.getId(), currentMileage.getText().toString());
+                                            //Change the car status and the mileage
+                                            new UpdateCar().updateCar(car.getID(), currentMileage.getText().toString());
+                                            //Save to history
+                                            new AddToHistory().addToHistory(r, currentMileage.getText().toString(), String.valueOf(balance));
+                                            //Delete the reservation
+                                            new DeleteReservation().deleteReservation(r.getId());
+
+                                            Toasty.success(getApplicationContext(), "Payment Successful! Receipt Emailed.").show();
+
+                                            toHomeAfterSuccess = new Intent(getApplicationContext(), Home.class);
+                                            startActivity(toHomeAfterSuccess);
+
+                                        }
+                                    }).show();
+
+                        }
+                    });
+
+                    credit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            dialogBuilder.dismiss();
+                            Snackbar.make(parentActivityLayout, R.string.payment_processed, Snackbar.LENGTH_INDEFINITE)
+                                    .setAction(R.string.back, new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+                                            //Update the current mileageReturned for the reservation
+                                            new UpdateReservation().updateReservation(r.getId(), currentMileage.getText().toString());
+                                            //Change the car status and the mileage
+                                            new UpdateCar().updateCar(car.getID(), currentMileage.getText().toString());
+
+                                            //Save to history
+                                            new AddToHistory().addToHistory(r, currentMileage.getText().toString(), String.valueOf(balance));
+                                            //Delete the reservation
+                                            new DeleteReservation().deleteReservation(r.getId());
+
+                                            Toasty.success(getApplicationContext(), "Payment Successful! Receipt Emailed.").show();
+
+                                            toHomeAfterSuccess = new Intent(getApplicationContext(), Home.class);
+                                            startActivity(toHomeAfterSuccess);
+
+                                        }
+                                    }).show();
+
+                        }
+                    });
+
+                    cash.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            dialogBuilder.dismiss();
+                            Snackbar.make(parentActivityLayout, R.string.payment_processed, Snackbar.LENGTH_INDEFINITE)
+                                    .setAction(R.string.back, new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+                                            //Update the current mileageReturned for the reservation
+                                            new UpdateReservation().updateReservation(r.getId(), currentMileage.getText().toString());
+                                            //Change the car status and the mileage
+                                            new UpdateCar().updateCar(car.getID(), currentMileage.getText().toString());
+
+                                            //Save to history
+                                            new AddToHistory().addToHistory(r, currentMileage.getText().toString(), String.valueOf(balance));
+                                            //Delete the reservation
+                                            new DeleteReservation().deleteReservation(r.getId());
+
+                                            Toasty.success(getApplicationContext(), "Payment Successful! Receipt Emailed.").show();
+
+                                            toHomeAfterSuccess = new Intent(getApplicationContext(), Home.class);
+                                            startActivity(toHomeAfterSuccess);
+
+                                        }
+                                    }).show();
+
+                        }
+                    });
+
+                    dialogBuilder.setView(dialogView);
+                    dialogBuilder.show();
+
                 }
-
-                debit.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        dialogBuilder.dismiss();
-                        Snackbar.make(parentActivityLayout, R.string.payment_processed , Snackbar.LENGTH_INDEFINITE)
-                                .setAction(R.string.back, new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-                                        //Update the current mileageReturned for the reservation
-                                        new UpdateReservation().updateReservation(r.getId(), currentMileage.getText().toString());
-                                        //Change the car status and the mileage
-                                        new UpdateCar().updateCar(car.getID(), currentMileage.getText().toString());
-                                        //Save to history
-                                        new AddToHistory().addToHistory(r, currentMileage.getText().toString(), String.valueOf(balance));
-                                        //Delete the reservation
-                                        new DeleteReservation().deleteReservation(r.getId());
-
-                                        Toasty.success(getApplicationContext(), "Payment Successful! Receipt Emailed.").show();
-
-                                        toHomeAfterSuccess = new Intent(getApplicationContext(), Home.class);
-                                        startActivity(toHomeAfterSuccess);
-
-                                    }
-                                }).show();
-
-                    }
-                });
-
-                credit.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        dialogBuilder.dismiss();
-                        Snackbar.make(parentActivityLayout, R.string.payment_processed, Snackbar.LENGTH_INDEFINITE)
-                                .setAction(R.string.back, new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-                                        //Update the current mileageReturned for the reservation
-                                        new UpdateReservation().updateReservation(r.getId(), currentMileage.getText().toString());
-                                        //Change the car status and the mileage
-                                        new UpdateCar().updateCar(car.getID(), currentMileage.getText().toString());
-
-                                        //Save to history
-                                        new AddToHistory().addToHistory(r, currentMileage.getText().toString(), String.valueOf(balance));
-                                        //Delete the reservation
-                                        new DeleteReservation().deleteReservation(r.getId());
-
-                                        Toasty.success(getApplicationContext(), "Payment Successful! Receipt Emailed.").show();
-
-                                        toHomeAfterSuccess = new Intent(getApplicationContext(), Home.class);
-                                        startActivity(toHomeAfterSuccess);
-
-                                    }
-                                }).show();
-
-                    }
-                });
-
-                cash.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        dialogBuilder.dismiss();
-                        Snackbar.make(parentActivityLayout, R.string.payment_processed, Snackbar.LENGTH_INDEFINITE)
-                                .setAction(R.string.back, new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-                                        //Update the current mileageReturned for the reservation
-                                        new UpdateReservation().updateReservation(r.getId(), currentMileage.getText().toString());
-                                        //Change the car status and the mileage
-                                        new UpdateCar().updateCar(car.getID(), currentMileage.getText().toString());
-
-                                        //Save to history
-                                        new AddToHistory().addToHistory(r, currentMileage.getText().toString(), String.valueOf(balance));
-                                        //Delete the reservation
-                                        new DeleteReservation().deleteReservation(r.getId());
-
-                                        Toasty.success(getApplicationContext(), "Payment Successful! Receipt Emailed.").show();
-
-                                        toHomeAfterSuccess = new Intent(getApplicationContext(), Home.class);
-                                        startActivity(toHomeAfterSuccess);
-
-                                    }
-                                }).show();
-
-                    }
-                });
-
-                dialogBuilder.setView(dialogView);
-                dialogBuilder.show();
 
             }
 
