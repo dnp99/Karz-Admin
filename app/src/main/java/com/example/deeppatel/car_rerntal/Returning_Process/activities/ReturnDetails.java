@@ -94,7 +94,7 @@ public class ReturnDetails extends AppCompatActivity {
             initial_mileage.setText(car.getMileage());
 
             Picasso.get().setLoggingEnabled(true);
-            Picasso.get().load(car.getImage()).placeholder(R.drawable.ic_launcher_foreground).resize(180, 180).centerCrop().into(car_image_iv);
+            Picasso.get().load(car.getImage()).placeholder(R.drawable.default_placeholder).resize(180, 180).centerCrop().into(car_image_iv);
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 

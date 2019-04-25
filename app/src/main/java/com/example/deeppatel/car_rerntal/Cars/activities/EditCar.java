@@ -44,7 +44,7 @@ public class EditCar extends AppCompatActivity {
             mileage.setText(String.valueOf(editCar.getMileage()));
             status.setText(String.valueOf(editCar.getStatus()));
             status.setEnabled(false);
-            Picasso.get().load(editCar.getImage()).placeholder(R.drawable.ic_launcher_foreground).into(imageView);
+            Picasso.get().load(editCar.getImage()).placeholder(R.drawable.default_placeholder).into(imageView);
         }
 
     }
